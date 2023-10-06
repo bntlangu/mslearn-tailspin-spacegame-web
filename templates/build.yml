@@ -1,7 +1,16 @@
 parameters:
   buildConfiguration: 'Release'
 
+variables:
+  dotnetSdkVersion: '6.x'
+
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+  inputs:
+    packageType: sdk
+    version: '$(dotnetSdkVersion)'
+
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - ${{ parameters.buildConfiguration }}'
   inputs:
